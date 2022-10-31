@@ -86,6 +86,7 @@ const DataTable = () => {
         name: 'Edward King 0',
         age: '32',
         address: 'London, Park Lane no. 0',
+        generic_name:'abcd'
       },
       {
         key: '1',
