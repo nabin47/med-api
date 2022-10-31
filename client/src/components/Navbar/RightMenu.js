@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 class RightMenu extends Component {
   render() {
     return (
