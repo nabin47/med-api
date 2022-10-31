@@ -1,5 +1,6 @@
 import { Button, Form, Input, Popconfirm, Table } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import Navbar from '../components/Navbar/Navbar';
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -169,6 +170,7 @@ const DataTable = () => {
     });
     return (
       <div>
+        <Navbar />
         <Button
           onClick={handleAdd}
           type="primary"
