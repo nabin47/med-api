@@ -127,9 +127,14 @@
     padding: 10px 20px;
   }
 
+  .search-bar-dropdown {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
 }
 
-@media (min-width: 767px){
+/* @media (min-width: 767px){
   .nav-item {
     margin-top: 4%;
   }
@@ -146,4 +151,21 @@
   .menuCon .rightMenu {
     float: right;
   }
+} */
+
+.search-bar-dropdown {
+  width: 30em;
+  margin-left: 30%;
+  margin-right: auto;
+}
+
+.btn {
+  margin-left: 45%;
+  margin-right: 45%;
+  margin-top: 1%;
+}
+
+#results {
+  position: absolute;
+  width: inherit;
 }
