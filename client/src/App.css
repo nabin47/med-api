@@ -1,10 +1,15 @@
 @import "~antd/dist/antd.min.css";
 
+* {
+  text-decoration: none !important;
+}
+
 .menuBar {
   padding: 0 20px;
   border-bottom: solid 1px #e8e8e8;
+  margin-bottom: 5%;
   overflow: auto;
-  box-shadow: 0 0 30px #f3f1f1;
+  box-shadow: 0 0 30px #0d6efd4d;
 }
 
 .logo {
@@ -22,6 +27,7 @@
 .menuCon {
   width: calc(100% - 150px);
   float: left;
+  margin-top: 1%;
 }
 
 .menuCon .ant-menu-item {
@@ -54,7 +60,7 @@
   height: 32px;
   padding: 6px;
   margin-top: 8px;
-  display: none;
+  display: none !important;
   background: none;
 }
 
@@ -106,7 +112,7 @@
 
 @media (max-width: 767px) {
   .barsMenu {
-    display: inline-block;
+    display: inline-block !important;
   }
 
   .leftMenu,
@@ -134,7 +140,7 @@
 
 }
 
-/* @media (min-width: 767px){
+@media (min-width: 767px){
   .nav-item {
     margin-top: 4%;
   }
@@ -151,7 +157,7 @@
   .menuCon .rightMenu {
     float: right;
   }
-} */
+}
 
 .search-bar-dropdown {
   width: 30em;
@@ -168,4 +174,18 @@
 #results {
   position: absolute;
   width: inherit;
+}
+
+.heading {
+  background-color:"#3CB9D1";
+  font-family:"Arial, Helvetica, sans-serif";
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.prod-description {
+  font: 14px; 
+  font-family:"Arial, Helvetica, sans-serif";
+  margin-left:20px;
+  margin-right:20px;
 }
