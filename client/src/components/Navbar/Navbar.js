@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
 import { MedicineBoxTwoTone } from '@ant-design/icons';
@@ -13,17 +14,17 @@ class Navbar extends Component {
       visible: true,
     });
   };
-onClose = () => {
+  onClose = () => {
     this.setState({
       visible: false,
     });
   };
-render() {
+  render() {
     return (
         <nav className="menuBar">
           <div className="logo">
             <MedicineBoxTwoTone />
-            <a href="">Med-Api</a>
+            <Link to='/'>Med-Api</Link>
           </div>
           <div className="menuCon">
             <div className="leftMenu">
