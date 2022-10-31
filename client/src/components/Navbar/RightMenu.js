@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 class RightMenu extends Component {
@@ -9,7 +10,7 @@ class RightMenu extends Component {
       <Menu mode="horizontal" className='nav-item'>
         <Menu.Item key="app">
           <UserOutlined />
-          <a href="">Signin</a>
+          <Link to='/Login'>Signin</Link>
         </Menu.Item>
       </Menu>
     );
