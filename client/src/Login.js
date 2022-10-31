@@ -22,7 +22,11 @@ function Login() {
   return (
     <div>
         <Navbar />
-        
+
+        <div style={{display: "flex", justifyContent: "center"}}>
+            <h1>Med-Api</h1><br />
+        </div>
+
         <Form
         name="normal_login"
         onFinish={onFinish}
