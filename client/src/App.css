@@ -110,6 +110,15 @@
   border-bottom-color: transparent;
 }
 
+.ant-table-cell>a {
+  color: #1890ff !important;
+}
+
+.ant-table-cell>a:hover {
+  color: red !important;
+  transition: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
 @media (max-width: 767px) {
   .barsMenu {
     display: inline-block !important;
@@ -140,7 +149,7 @@
 
 }
 
-@media (min-width: 767px){
+/* @media (min-width: 767px){
   .nav-item {
     margin-top: 4%;
   }
@@ -157,7 +166,7 @@
   .menuCon .rightMenu {
     float: right;
   }
-}
+} */
 
 .search-bar-dropdown {
   width: 30em;
