@@ -120,14 +120,14 @@
 }
 
 @media (max-width: 767px) {
-  .barsMenu {
+  /* .barsMenu {
     display: inline-block !important;
-  }
+  } */
 
-  .leftMenu,
+  /* .leftMenu,
   .rightMenu {
     display: none;
-  }
+  } */
 
   .logo a {
     margin-left: -20px;
@@ -212,4 +212,8 @@
 /* Footer */
 .footer-icons {
   margin: 1%;
+}
+
+.copyright>a {
+  color: #ffffff !important;
 }
