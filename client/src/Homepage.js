@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar'
 import SearchbarDropdown from './components/SearchbarDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import Footer from './components/Footer/Footer';
 
 const defaultOptions = []
 for ( let i = 0; i < 10; i++) {
@@ -35,6 +36,7 @@ function App() {
       <Navbar />
       <SearchbarDropdown options={options} onInputChange={onInputChange}/>
       <button className='btn btn-primary' onClick={navigateToDetailsPage}>Search</button>
+      <Footer />
     </div>
   );
 }

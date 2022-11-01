@@ -189,3 +189,18 @@
   margin-left:20px;
   margin-right:20px;
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1890ff;
+  color: white;
+  text-align: center;
+}
+
+/* Footer */
+.footer-icons {
+  margin: 1%;
+}
