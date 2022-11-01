@@ -5,6 +5,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function Login() {
   
@@ -82,6 +83,7 @@ function Login() {
             </Button>
         </Form.Item>
         </Form>
+        <Footer />
     </div>
 
   );
