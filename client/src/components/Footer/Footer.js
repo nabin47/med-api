@@ -14,7 +14,7 @@ const Footer = () => <footer className="page-footer font-small blue pt-4">
             <div class="container-fluid bg-copyright">
                 <div class="container">
                     <p class="copyright" style={{color: "#ffffff ! important"}}>
-                        &copy; <a href="https://www.vivasoftltd.com/" style={{color: "#ffffff !important"}}>Vivasoft</a> 2022 • All rights reserved.
+                        &copy; <a href="https://www.vivasoftltd.com/">Vivasoft</a> 2022 • All rights reserved.
                     </p>
                 </div>
             </div>
