@@ -1,0 +1,40 @@
+.form-body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+h1 {
+    font-size: 1em;
+    color: #28282B;
+}
+
+.form-group {
+    margin: 1%;
+    padding: 1%;
+}
+
+.form-group label {
+    font-size: 0.8em;
+    color: #28282B;
+}
+
+.form-group.modal-button {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.modal-area {
+    border-radius: 5%;
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+
+form-body.form-group.form-control {
+    border-radius: 20% !important;
+    padding: 20px;
+    border-color: #28282B;
+}
