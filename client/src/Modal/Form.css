@@ -61,3 +61,14 @@ form-body.form-group.form-control {
     border-radius: 5%;
     padding: 2px;
 }
+
+.add-modal-burron {
+    margin-left: 80%;
+}
+
+.modal-burron span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

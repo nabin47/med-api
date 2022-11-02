@@ -125,7 +125,7 @@ function DataTable() {
       <Container triggerText={triggerText} onSubmit={onSubmit} />
       <header className="App-header">
         {/* <Button onClick={onAddStudent}>Add a new Student</Button> */}
-        <Table columns={columns} dataSource={dataSource}></Table>
+        <Table className="table-body" columns={columns} dataSource={dataSource}></Table>
         <Modal
           className="edit-modal-area"
           title="Edit Student"

@@ -10,16 +10,16 @@ const About = ()=>{
     return(
         <div>
         <Navbar/>
-        
-        <div class="jumbotron">
-        
+        <div class="card">
+        </div>
+       
+        <div class="card-text">
         <p class="para">Med-Api</p>
-        <hr class="my-4"/>
+            <div class="card-body">
+        <p class="paragraph">{item.About}</p>
+            </div>
         </div>
-        <h1 class="heading" >About us</h1>
-        <div class="card-body">
-            <p class="paragraph">{item.About}</p>
-        </div>
+        
         <Footer />
         </div>
     )
