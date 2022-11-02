@@ -37,7 +37,7 @@ export const Modal = ({
               <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
           </button>
-          <div className="modal-body w-75 p-3">
+          <div className="modal-body w-100 p-3">
             <Form onSubmit={onSubmit} />
           </div>
         </div>

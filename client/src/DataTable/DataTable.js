@@ -1,5 +1,6 @@
 import "antd/dist/antd.css";
 import "../DataTable/Table.css";
+import "../Modal/Form.css"
 import { Button, Table, Modal, Input } from "antd";
 import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -126,6 +127,7 @@ function DataTable() {
         {/* <Button onClick={onAddStudent}>Add a new Student</Button> */}
         <Table columns={columns} dataSource={dataSource}></Table>
         <Modal
+          className="edit-modal-area"
           title="Edit Student"
           visible={isEditing}
           okText="Save"
@@ -145,30 +147,137 @@ function DataTable() {
             resetEditing();
           }}
         >
-          <Input
-            value={editingStudent?.name}
-            onChange={(e) => {
-              setEditingStudent((pre) => {
-                return { ...pre, name: e.target.value };
-              });
-            }}
-          />
-          <Input
-            value={editingStudent?.email}
-            onChange={(e) => {
-              setEditingStudent((pre) => {
-                return { ...pre, email: e.target.value };
-              });
-            }}
-          />
-          <Input
-            value={editingStudent?.address}
-            onChange={(e) => {
-              setEditingStudent((pre) => {
-                return { ...pre, address: e.target.value };
-              });
-            }}
-          />
+          <div className="form-body">
+            <div className="form-col">
+              <div className="form-group">
+                <label>Drug Name</label>
+                <Input
+                  required
+                  className="form-ip-box"
+                  value={editingStudent?.name}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, name: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Generic Name</label>
+                <Input
+                  required
+                  className="form-ip-box"
+                  value={editingStudent?.generic_name}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, generic_name: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Strength</label>
+                <Input
+                  required
+                  className="form-ip-box"
+                  value={editingStudent?.strength}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, strength: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Manufacturer</label>
+                <Input
+                  required
+                  className="form-ip-box"
+                  value={editingStudent?.company}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, company: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Unit Price</label>
+                <Input
+                  className="form-ip-box"
+                  value={editingStudent?.price}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, price: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="form-col">
+              <div className="form-group">
+                <label>Indication</label>
+              <Input
+                className="form-ip-box"
+                value={editingStudent?.indication}
+                onChange={(e) => {
+                  setEditingStudent((pre) => {
+                    return { ...pre, indication: e.target.value };
+                  });
+                }}
+              />
+              </div>
+              <div className="form-group">
+                <label>Description</label>
+                <Input
+                  className="form-ip-box"
+                  value={editingStudent?.description}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, description: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Doses</label>
+                <Input
+                  className="form-ip-box"
+                  value={editingStudent?.doses}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, doses: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Side Effects</label>
+                <Input
+                  className="form-ip-box"
+                  value={editingStudent?.side_effect}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, side_effect: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Precautions</label>
+                <Input
+                  className="form-ip-box"
+                  value={editingStudent?.precautions}
+                  onChange={(e) => {
+                    setEditingStudent((pre) => {
+                      return { ...pre, precautions: e.target.value };
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </Modal>
       </header>
     </div>
