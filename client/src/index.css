@@ -43,7 +43,7 @@ p.lorem-text {
   height: 100%;
   padding: 2.5em 1.5em 1.5em 1.5em;
   background-color: #ffffff;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
