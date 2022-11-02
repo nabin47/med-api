@@ -3,17 +3,17 @@ import {Link} from 'react-router-dom';
 import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
 import { MedicineBoxTwoTone } from '@ant-design/icons';
-
+import { Drawer, Button } from 'antd';
 class Navbar extends Component {
   state = {
     current: 'mail',
     visible: false
   }
-  // showDrawer = () => {
-  //   this.setState({
-  //     visible: true,
-  //   });
-  // };
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
   onClose = () => {
     this.setState({
       visible: false,
@@ -33,19 +33,7 @@ class Navbar extends Component {
             <div className="rightMenu">
                 <RightMenu />
             </div>
-            {/* <Button className="barsMenu" type="primary" onClick={this.showDrawer}>
-              <span className="barsBtn"></span>
-            </Button>
-            <Drawer
-              title="Med-Api"
-              placement="right"
-              closable={false}
-              onClose={this.onClose}
-              visible={this.state.visible}
-            >
-              <LeftMenu />
-              <RightMenu />
-            </Drawer> */}
+          
 </div>
         </nav>
     );

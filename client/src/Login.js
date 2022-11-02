@@ -1,91 +1,96 @@
-import React from 'react'
-import 'antd/dist/antd.css';
-import './Login.css';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
-
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-
-function Login() {
-  
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    alert('Login Successfully')
-  };
-
-  const navigate = useNavigate();
-
-  const navigateToDataTable = () => {
-    navigate('/DataTable/DataTable')
+import { Footer } from "antd/lib/layout/layout";
+import React, { Component } from "react";
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    const { email, password } = this.state;
+    console.log(email, password);
+    fetch("/login-user", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status == "ok") {
+          alert("login successful");
+          window.localStorage.setItem("token", data.data);
+          window.location.href = "./userDetails";
+        }
+        else{
+          alert("wrong email or password");
+          window.location.href = "./Login";
+        }
+      });
+  }
+  /*className="d-grid"*/
+  render() {
+    return (
+      <div>
 
-  return (
-    <div>
-        <Navbar />
+        <form onSubmit={this.handleSubmit} className="login-form" style={{"width":"30%"}}>
+        <div class="container" style={{"backgroundColor":"skyblue","borderRadius":"2%","margin-left":"120%","margin-top":"20%"}}>
+          <h3 style={{"color":"#4d4d4d","padding":"0.5em"}} >Med-API</h3>
 
-        <div style={{display: "flex", justifyContent: "center"}}>
-            <h1>Med-Api</h1><br />
-        </div>
-
-        <Form
-        name="normal_login"
-        onFinish={onFinish}
-        className="login-form"
-        initialValues={{
-            remember: true,
-        }}
-        >
-        <Form.Item
-            name="email"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your Email!'
-            },
-            {
-                pattern:  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/,
-                message: 'Your Email is invalid!'
-            },
-            ]}
-            hasFeedback
-        >
-            <Input placeholder="Email" />
-        </Form.Item>
-        <Form.Item
-            name="password"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your Password!',
-            },
-            { min: 8 },
-            ]}>
-            <Input
-            type="password"
-            placeholder="Password"
+          <div className="mb-3">
+            <label style={{"float":"left","color":"#4d4d4d","padding":"0.5em"}}>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+              onChange={(e) => this.setState({ email: e.target.value })}
             />
-        </Form.Item>
+          </div>
 
-        <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-            </Form.Item>
+          <div className="mb-3">
+            <label style={{"float":"left","color":"#4d4d4d","padding":"0.5em"}}>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+              onChange={(e) => this.setState({ password: e.target.value })}
+            />
+          </div>
 
-            <a className="login-form-forgot" href="forgot.html">
-            Forgot password
-            </a>
-        </Form.Item>
+          <div className="mb-3">
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox" style={{"float":"left","margin-top":"0.9em"}}
+                className="custom-control-input"
+                id="customCheck1"
+              />
+              <label className="custom-control-label" htmlFor="customCheck1" style={{"color":"#4d4d4d","padding":"0.5em","float":"left"}}>
+                Remember me
+              </label>
+            </div>
+          </div>
 
-        <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button" onClick={navigateToDataTable}>
-            Log in
-            </Button>
-        </Form.Item>
-        </Form>
-        <Footer />
-    </div>
+          <div>
+            <button type="submit" className="btn btn-primary" style={{marginBottom: "3%"}}>
+              Login
+            </button>
+          </div>
 
-  );
-};
-export default Login;
+          </div>
+        </form>
+      </div>
+    );
+  }
+}

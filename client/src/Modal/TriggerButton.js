@@ -1,19 +1,13 @@
 import React from 'react';
-import { PlusCircleOutlined } from '@ant-design/icons';
-const Trigger = ({ buttonRef, showModal }) => {
+const Trigger = ({ triggerText, buttonRef, showModal }) => {
   return (
-    <div className='add-modal-button'>
-      <button
-        className="btn btn-sm btn-primary modal-burron"
-        ref={buttonRef}
-        onClick={showModal}
-      >
-        <span>
-          <PlusCircleOutlined />
-          Add Data
-        </span>
-      </button>
-    </div>
+    <button
+      className="btn btn-lg btn-primary center modal-button"
+      ref={buttonRef}
+      onClick={showModal}
+    >
+      {triggerText}
+    </button>
   );
 };
 export default Trigger;

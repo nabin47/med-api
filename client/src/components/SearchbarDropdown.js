@@ -1,33 +1,11 @@
-import React, {useEffect, useRef, useState} from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, {useEffect, useRef} from "react";
+import { useNavigate } from 'react-router-dom';
 
-const defaultOptions = []
-for ( let i = 0; i < 10; i++) {
-    defaultOptions.push(`Id ${i}`);
-    defaultOptions.push(`Medicine ${i}`);
-    defaultOptions.push(`Ingredients ${i}`);
-}
 
 const SearchbarDropdown = (props) => {
-    const [options, setOptions] = useState([]);
-    // const {options, onInputChange} = props;
+    const {options, onInputChange} = props;
     const ulRef=useRef();
     const inputRef=useRef();
-
-    // navigation route for search button
-    // const navigate = useNavigate();
-
-    // const navigateToDetailsPage = () => {
-    //     <Link to={{
-    //         pathname: "/Details/parameter-data",
-    //         state: {stateParam: inputRef.current.value}
-    //     }}>
-    //     </Link>
-    // } 
-
-    const onInputChange = (event) => {
-        setOptions(defaultOptions.filter(option => option.includes(event.target.value)));
-    }
 
     useEffect(() => {
     inputRef.current.addEventListener('click', (event) => {
@@ -42,6 +20,11 @@ const SearchbarDropdown = (props) => {
       ulRef.current.style.display = 'none';
     });
   }, []);
+  const navigate = useNavigate();
+  function navigateToDetailsPage()
+  {
+    navigate('/Details/'+inputRef.current.value);
+  }
     return(
         <div className="search-bar-dropdown">
             <input id="searchbar" type="text" className="form-control" placeholder="Search" ref={inputRef} onChange={onInputChange}></input>
@@ -54,6 +37,7 @@ const SearchbarDropdown = (props) => {
                             className="list-group-item list-group-item-action"
                             onClick={(e) => {
                                 inputRef.current.value=option;
+                                navigateToDetailsPage();
                             }}
                         >
                             {option}
@@ -61,12 +45,6 @@ const SearchbarDropdown = (props) => {
                     )
                 })}        
             </ul>
-            <Link to={{
-            pathname: "/Details",
-            state: {stateParam: options}
-            }}>
-                <button className='btn btn-primary'>Search</button>
-            </Link>
         </div>
     )
 }

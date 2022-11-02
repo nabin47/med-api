@@ -48,7 +48,8 @@
   .medicine-description{
     font-family: "Bahnschrift Regular",sans-serif;;
   }
-  .generic-name{
+  
+  .name{
     font-size: 27px;
   }
   .medicine-attr{

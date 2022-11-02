@@ -1,42 +1,31 @@
 import "antd/dist/antd.css";
-import "../DataTable/Table.css";
+import "./Table.css";
 import "../Modal/Form.css"
 import { Button, Table, Modal, Input } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar2/Navbar";
 import Container from '../Modal/Container';
 
 function DataTable() {
   const [isEditing, setIsEditing] = useState(false);
-  const [editingStudent, setEditingStudent] = useState(null);
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: "John",
-      email: "john@gmail.com",
-      address: "John Address",
-    },
-    {
-      id: 2,
-      name: "David",
-      email: "david@gmail.com",
-      address: "David Address",
-    },
-    {
-      id: 3,
-      name: "James",
-      email: "james@gmail.com",
-      address: "James Address",
-    },
-    {
-      id: 4,
-      name: "Sam",
-      email: "sam@gmail.com",
-      address: "Sam Address",
-    },
-  ]);
+  const [editingMed, setEditingMed] = useState(null);
+  const [dataSource, setDataSource] = useState("");
+  useEffect(() => {
+    const url = "/getmed";
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+            setDataSource(json);
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+    fetchData();
+  }, []);
   const columns = [
     {
       key: "1",
@@ -46,7 +35,7 @@ function DataTable() {
     {
       key: "2",
       title: "Generic Name",
-      dataIndex: "generic-name",
+      dataIndex: "generic_name",
     },
     {
       key: "3",
@@ -82,68 +71,50 @@ function DataTable() {
   ];
 
   const triggerText = 'Add Data';
-  const onSubmit = (event) => {
-    event.preventDefault(event);
-    console.log(event.target.value);
-  };
-
-  const onAddStudent = () => {
-    const randomNumber = parseInt(Math.random() * 1000);
-    const newStudent = {
-      id: randomNumber,
-      name: "Name " + randomNumber,
-      email: randomNumber + "@gmail.com",
-      address: "Address " + randomNumber,
-    };
-    setDataSource((pre) => {
-      return [...pre, newStudent];
-    });
-  };
+ 
   const onDeleteStudent = (record) => {
     Modal.confirm({
-      title: "Are you sure, you want to delete this student record?",
+      title: "Are you sure, you want to delete this medicine info?",
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        setDataSource((pre) => {
-          return pre.filter((student) => student.id !== record.id);
-        });
+        fetch('/delete/' + record._id,{
+          method: 'DELETE'
+      }).then((resp)=> resp.text())
+      .then(() => window.location.reload());
       },
     });
   };
   const onEditStudent = (record) => {
     setIsEditing(true);
-    setEditingStudent({ ...record });
+    setEditingMed({ ...record });
   };
   const resetEditing = () => {
     setIsEditing(false);
-    setEditingStudent(null);
+    setEditingMed(null);
   };
   return (
     <div className="DataTable">
       <Navbar />
-      <Container triggerText={triggerText} onSubmit={onSubmit} />
+      <Container triggerText={triggerText}  />
       <header className="App-header">
-        {/* <Button onClick={onAddStudent}>Add a new Student</Button> */}
-        <Table className="table-body" columns={columns} dataSource={dataSource}></Table>
+        <Table columns={columns} dataSource={dataSource}></Table>
         <Modal
-          className="edit-modal-area"
-          title="Edit Student"
+          title="Edit Medicine"
           visible={isEditing}
           okText="Save"
           onCancel={() => {
             resetEditing();
           }}
           onOk={() => {
-            setDataSource((pre) => {
-              return pre.map((student) => {
-                if (student.id === editingStudent.id) {
-                  return editingStudent;
-                } else {
-                  return student;
-                }
-              });
-            });
+            fetch('/update/'+ editingMed._id, {
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(editingMed)
+    }).then((resp)=> resp.text())
+    .then(()=>window.history.go());
             resetEditing();
           }}
         >
@@ -154,9 +125,9 @@ function DataTable() {
                 <Input
                   required
                   className="form-ip-box"
-                  value={editingStudent?.name}
+                  value={editingMed?.name}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, name: e.target.value };
                     });
                   }}
@@ -167,9 +138,9 @@ function DataTable() {
                 <Input
                   required
                   className="form-ip-box"
-                  value={editingStudent?.generic_name}
+                  value={editingMed?.generic_name}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, generic_name: e.target.value };
                     });
                   }}
@@ -180,9 +151,9 @@ function DataTable() {
                 <Input
                   required
                   className="form-ip-box"
-                  value={editingStudent?.strength}
+                  value={editingMed?.strength}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, strength: e.target.value };
                     });
                   }}
@@ -193,9 +164,9 @@ function DataTable() {
                 <Input
                   required
                   className="form-ip-box"
-                  value={editingStudent?.company}
+                  value={editingMed?.company}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, company: e.target.value };
                     });
                   }}
@@ -205,9 +176,9 @@ function DataTable() {
                 <label>Unit Price</label>
                 <Input
                   className="form-ip-box"
-                  value={editingStudent?.price}
+                  value={editingMed?.price}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, price: e.target.value };
                     });
                   }}
@@ -220,9 +191,9 @@ function DataTable() {
                 <label>Indication</label>
               <Input
                 className="form-ip-box"
-                value={editingStudent?.indication}
+                value={editingMed?.indication}
                 onChange={(e) => {
-                  setEditingStudent((pre) => {
+                  setEditingMed((pre) => {
                     return { ...pre, indication: e.target.value };
                   });
                 }}
@@ -232,9 +203,9 @@ function DataTable() {
                 <label>Description</label>
                 <Input
                   className="form-ip-box"
-                  value={editingStudent?.description}
+                  value={editingMed?.description}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, description: e.target.value };
                     });
                   }}
@@ -244,9 +215,9 @@ function DataTable() {
                 <label>Doses</label>
                 <Input
                   className="form-ip-box"
-                  value={editingStudent?.doses}
+                  value={editingMed?.doses}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, doses: e.target.value };
                     });
                   }}
@@ -256,9 +227,9 @@ function DataTable() {
                 <label>Side Effects</label>
                 <Input
                   className="form-ip-box"
-                  value={editingStudent?.side_effect}
+                  value={editingMed?.side_effect}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, side_effect: e.target.value };
                     });
                   }}
@@ -268,9 +239,9 @@ function DataTable() {
                 <label>Precautions</label>
                 <Input
                   className="form-ip-box"
-                  value={editingStudent?.precautions}
+                  value={editingMed?.precautions}
                   onChange={(e) => {
-                    setEditingStudent((pre) => {
+                    setEditingMed((pre) => {
                       return { ...pre, precautions: e.target.value };
                     });
                   }}
