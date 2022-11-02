@@ -15,7 +15,7 @@ function App() {
               <Route exact path="/" element={<Homepage />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/DataTable/DataTable" element={<DataTable />} />
-              <Route path="/Details/:type" element={<Details  />} />
+              <Route path="/Details/" element={<Details  />} />
               <Route path="/About" element={<About />} />
        </Routes>
   </div>

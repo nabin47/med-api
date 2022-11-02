@@ -62,7 +62,7 @@ const SearchbarDropdown = (props) => {
                 })}        
             </ul>
             <Link to={{
-            pathname: "/Details/parameter-data",
+            pathname: "/Details",
             state: {stateParam: options}
             }}>
                 <button className='btn btn-primary'>Search</button>
