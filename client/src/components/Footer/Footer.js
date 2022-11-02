@@ -1,16 +1,11 @@
 import React from "react"
+import './Footer.css'
 
 import { FacebookFilled, TwitterSquareFilled  } from "@ant-design/icons"
 
 const Footer = () => <footer className="page-footer font-small blue pt-4">
     <div className="container-fluid text-center text-md-left footer">
-        <footer>
-            <div className="row">
-                <span>
-                    <FacebookFilled className="footer-icons"/>
-                    <TwitterSquareFilled className="footer-icons"/>
-                </span>
-            </div>
+        <footer className="footer-body">
             <div class="container-fluid bg-copyright">
                 <div class="container">
                     <p class="copyright" style={{color: "#ffffff ! important"}}>
@@ -18,6 +13,12 @@ const Footer = () => <footer className="page-footer font-small blue pt-4">
                     </p>
                 </div>
             </div>
+            {/* <div className="row ">
+                <span className="footer-row">
+                    <FacebookFilled className="footer-icons"/>
+                    <TwitterSquareFilled className="footer-icons"/>
+                </span>
+            </div> */}
 
 
         </footer>
