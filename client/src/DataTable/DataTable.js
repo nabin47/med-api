@@ -1,193 +1,178 @@
-import { Button, Form, Input, Popconfirm, Table } from 'antd';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
-const EditableContext = React.createContext(null);
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
-const EditableCell = ({
-  title,
-  editable,
-  children,
-  dataIndex,
-  record,
-  handleSave,
-  ...restProps
-}) => {
-  const [editing, setEditing] = useState(false);
-  const inputRef = useRef(null);
-  const form = useContext(EditableContext);
-  useEffect(() => {
-    if (editing) {
-      inputRef.current.focus();
-    }
-  }, [editing]);
-  const toggleEdit = () => {
-    setEditing(!editing);
-    form.setFieldsValue({
-      [dataIndex]: record[dataIndex],
-    });
-  };
-  const save = async () => {
-    try {
-      const values = await form.validateFields();
-      toggleEdit();
-      handleSave({
-        ...record,
-        ...values,
-      });
-    } catch (errInfo) {
-      console.log('Save failed:', errInfo);
-    }
-  };
-  let childNode = children;
-  if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: `${title} is required.`,
-          },
-        ]}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-      </Form.Item>
-    ) : (
-      <div
-        className="editable-cell-value-wrap"
-        style={{
-          paddingRight: 24,
-        }}
-        onClick={toggleEdit}
-      >
-        {children}
-      </div>
-    );
-  }
-  return <td {...restProps}>{childNode}</td>;
-};
+import "antd/dist/antd.css";
+import "../DataTable/Table.css";
+import { Button, Table, Modal, Input } from "antd";
+import { useState } from "react";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-const DataTable = () => {
-    const [dataSource, setDataSource] = useState([
-      {
-        key: '0',
-        name: 'Edward King 0',
-        age: '32',
-        address: 'London, Park Lane no. 0',
+import Navbar from "../components/Navbar/Navbar";
+import Container from '../Modal/Container';
+
+function DataTable() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingStudent, setEditingStudent] = useState(null);
+  const [dataSource, setDataSource] = useState([
+    {
+      id: 1,
+      name: "John",
+      email: "john@gmail.com",
+      address: "John Address",
+    },
+    {
+      id: 2,
+      name: "David",
+      email: "david@gmail.com",
+      address: "David Address",
+    },
+    {
+      id: 3,
+      name: "James",
+      email: "james@gmail.com",
+      address: "James Address",
+    },
+    {
+      id: 4,
+      name: "Sam",
+      email: "sam@gmail.com",
+      address: "Sam Address",
+    },
+  ]);
+  const columns = [
+    {
+      key: "1",
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      key: "2",
+      title: "Generic Name",
+      dataIndex: "generic-name",
+    },
+    {
+      key: "3",
+      title: "Strength",
+      dataIndex: "strength",
+    },
+    {
+      key: "4",
+      title: "Company",
+      dataIndex: "company",
+    },
+    {
+      key: "5",
+      title: "Actions",
+      render: (record) => {
+        return (
+          <>
+            <EditOutlined
+              onClick={() => {
+                onEditStudent(record);
+              }}
+            />
+            <DeleteOutlined
+              onClick={() => {
+                onDeleteStudent(record);
+              }}
+              style={{ color: "red", marginLeft: 12 }}
+            />
+          </>
+        );
       },
-      {
-        key: '1',
-        name: 'Edward King 1',
-        age: '32',
-        address: 'London, Park Lane no. 1',
-      },
-    ]);
-    const [count, setCount] = useState(2);
-    const handleDelete = (key) => {
-      const newData = dataSource.filter((item) => item.key !== key);
-      setDataSource(newData);
+    },
+  ];
+
+  const triggerText = 'Add Data';
+  const onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.value);
+  };
+
+  const onAddStudent = () => {
+    const randomNumber = parseInt(Math.random() * 1000);
+    const newStudent = {
+      id: randomNumber,
+      name: "Name " + randomNumber,
+      email: randomNumber + "@gmail.com",
+      address: "Address " + randomNumber,
     };
-    const defaultColumns = [
-      {
-        title: 'name',
-        dataIndex: 'name',
-        width: '30%',
-        editable: true,
-      },
-      {
-        title: 'age',
-        dataIndex: 'age',
-        editable: true,
-      },
-      {
-        title: 'address',
-        dataIndex: 'address',
-        editable: true,
-      },
-      {
-        title: 'operation',
-        dataIndex: 'operation',
-        render: (_, record) =>
-          dataSource.length >= 1 ? (
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <a>Delete</a>
-            </Popconfirm>
-          ) : null,
-      },
-    ];
-    const handleAdd = () => {
-      const newData = {
-        key: count,
-        name: `Edward King ${count}`,
-        age: '32',
-        address: `London, Park Lane no. ${count}`,
-      };
-      setDataSource([...dataSource, newData]);
-      setCount(count + 1);
-    };
-    const handleSave = (row) => {
-      const newData = [...dataSource];
-      const index = newData.findIndex((item) => row.key === item.key);
-      const item = newData[index];
-      newData.splice(index, 1, {
-        ...item,
-        ...row,
-      });
-      setDataSource(newData);
-    };
-    const components = {
-      body: {
-        row: EditableRow,
-        cell: EditableCell,
-      },
-    };
-    const columns = defaultColumns.map((col) => {
-      if (!col.editable) {
-        return col;
-      }
-      return {
-        ...col,
-        onCell: (record) => ({
-          record,
-          editable: col.editable,
-          dataIndex: col.dataIndex,
-          title: col.title,
-          handleSave,
-        }),
-      };
+    setDataSource((pre) => {
+      return [...pre, newStudent];
     });
-    return (
-      <div>
-        <Navbar />
-        <Button
-          onClick={handleAdd}
-          type="primary"
-          style={{
-            marginBottom: 16,
+  };
+  const onDeleteStudent = (record) => {
+    Modal.confirm({
+      title: "Are you sure, you want to delete this student record?",
+      okText: "Yes",
+      okType: "danger",
+      onOk: () => {
+        setDataSource((pre) => {
+          return pre.filter((student) => student.id !== record.id);
+        });
+      },
+    });
+  };
+  const onEditStudent = (record) => {
+    setIsEditing(true);
+    setEditingStudent({ ...record });
+  };
+  const resetEditing = () => {
+    setIsEditing(false);
+    setEditingStudent(null);
+  };
+  return (
+    <div className="DataTable">
+      <Navbar />
+      <Container triggerText={triggerText} onSubmit={onSubmit} />
+      <header className="App-header">
+        {/* <Button onClick={onAddStudent}>Add a new Student</Button> */}
+        <Table columns={columns} dataSource={dataSource}></Table>
+        <Modal
+          title="Edit Student"
+          visible={isEditing}
+          okText="Save"
+          onCancel={() => {
+            resetEditing();
+          }}
+          onOk={() => {
+            setDataSource((pre) => {
+              return pre.map((student) => {
+                if (student.id === editingStudent.id) {
+                  return editingStudent;
+                } else {
+                  return student;
+                }
+              });
+            });
+            resetEditing();
           }}
         >
-          Add a row
-        </Button>
-        <Table
-          components={components}
-          rowClassName={() => 'editable-row'}
-          bordered
-          dataSource={dataSource}
-          columns={columns}
-        />
-      </div>
-    );
-  };
-  export default DataTable;
+          <Input
+            value={editingStudent?.name}
+            onChange={(e) => {
+              setEditingStudent((pre) => {
+                return { ...pre, name: e.target.value };
+              });
+            }}
+          />
+          <Input
+            value={editingStudent?.email}
+            onChange={(e) => {
+              setEditingStudent((pre) => {
+                return { ...pre, email: e.target.value };
+              });
+            }}
+          />
+          <Input
+            value={editingStudent?.address}
+            onChange={(e) => {
+              setEditingStudent((pre) => {
+                return { ...pre, address: e.target.value };
+              });
+            }}
+          />
+        </Modal>
+      </header>
+    </div>
+  );
+}
+
+export default DataTable;
