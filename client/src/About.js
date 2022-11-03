@@ -10,12 +10,12 @@ const About = ()=>{
     return(
         <div>
         <Navbar/>
-        <div class="card">
+        <div class="about-cadr">
         </div>
        
-        <div class="card-text">
+        <div class="about-cadr-text">
         <p class="para">Med-Api</p>
-            <div class="card-body">
+            <div class="about-cadr-body">
         <p class="paragraph">{item.About}</p>
             </div>
         </div>

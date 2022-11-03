@@ -32,7 +32,7 @@
 .image{
     margin-left:0px;
 }
-.card{
+.about-cadr{
     margin-left: auto;
     margin-right: auto;
     background-image: url('https://wallpapertag.com/wallpaper/full/c/5/7/150412-free-download-chemistry-background-1920x1200-notebook.jpg');
@@ -48,7 +48,7 @@
     filter: blur(7px);
     -webkit-filter: blur(7px);
   }
-  .card-text{
+  .about-cadr-text{
     font-family:"Bahnschrift Regular",sans-serif;
     padding-top: 20px;
     color: white;
