@@ -174,15 +174,16 @@
   margin-right: auto;
 }
 
-.btn {
+/* .btn {
   margin-left: 45%;
   margin-right: 45%;
   margin-top: 1%;
-}
+} */
 
 #results {
   position: absolute;
   width: inherit;
+  z-index: 2;
 }
 
 .heading {
@@ -198,4 +199,3 @@
   margin-left:20px;
   margin-right:20px;
 }
-
