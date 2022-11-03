@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import Navbar from './components/Navbar/Navbar'
 import SearchbarDropdown from './components/SearchbarDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Footer from './components/Footer/Footer'
 import './App.css';
+import Cards from './components/Cards/Cards';
 
 let val="";
 function App() {
@@ -56,6 +58,7 @@ function App() {
     <div className="App">
       <Navbar />
       <SearchbarDropdown options={options} onInputChange={onInputChange} />
+      <Cards />
       <Footer />
     </div>
   );
