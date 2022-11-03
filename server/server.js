@@ -166,4 +166,20 @@ app.post("/userData", async (req, res) => {
       });
   } catch (error) {}
 });
-///////
+// Handling Count
+app.get("/count", async (req, res) => {
+  try { 
+    const namecount = await med.distinct('name');
+    const generic_count = await med.distinct('generic_name');
+    const company_count= await med.distinct('company');
+    let response = 
+    {
+      "name_count":namecount.length,
+      "generic_count":generic_count.length,
+      "company_count":company_count.length
+    }
+    res.send(response);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
