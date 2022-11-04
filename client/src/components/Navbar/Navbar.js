@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { MedicineBoxTwoTone } from '@ant-design/icons';
 
@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { UserContext } from '../../UserContext';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
+import './NavBar.css'
 
 function Navigate(){
   window.localStorage.clear();
@@ -15,10 +15,9 @@ function Navigate(){
 }
 
 function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
   const {user, setUser} = useContext(UserContext);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='nav-body'>
       <Container>
         <Navbar.Brand>
           <div className="logo">
