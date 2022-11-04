@@ -1,5 +1,5 @@
-import { Footer } from "antd/lib/layout/layout";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,12 +30,12 @@ export default class Login extends Component {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status == "ok") {
-          alert("login successful");
+         
           window.localStorage.setItem("token", data.data);
           window.location.href = "./userDetails";
         }
         else{
-          alert("wrong email or password");
+          
           window.location.href = "./Login";
         }
       });
@@ -46,11 +46,17 @@ export default class Login extends Component {
       <div>
 
         <form onSubmit={this.handleSubmit} className="login-form" style={{"width":"30%"}}>
-        <div class="container" style={{"backgroundColor":"skyblue","borderRadius":"2%","margin-left":"120%","margin-top":"20%"}}>
-          <h3 style={{"color":"#4d4d4d","padding":"0.5em"}} >Med-API</h3>
+        <div class="container" style={{"backgroundColor":"rgba(24,144,255,0.11)","borderRadius":"2%","marginLeft":"120%","marginTop":"20%"}}>
+          <h3 style={{"color":"#28282bc7","padding":"0.5em"}} >
+            <Link to='/'>
+              Med-API
+            </Link>
+          </h3>
 
           <div className="mb-3">
-            <label style={{"float":"left","color":"#4d4d4d","padding":"0.5em"}}>Email</label>
+            <div>
+              <label style={{"float":"left","color":"#28282bc7","padding":"0.5em"}}>Email</label>
+            </div>
             <input
               type="email"
               className="form-control"
@@ -60,7 +66,7 @@ export default class Login extends Component {
           </div>
 
           <div className="mb-3">
-            <label style={{"float":"left","color":"#4d4d4d","padding":"0.5em"}}>Password</label>
+            <label style={{"float":"left","color":"#28282bc7","padding":"0.5em"}}>Password</label>
             <input
               type="password"
               className="form-control"
@@ -69,22 +75,9 @@ export default class Login extends Component {
             />
           </div>
 
-          <div className="mb-3">
-            <div className="custom-control custom-checkbox">
-              <input
-                type="checkbox" style={{"float":"left","margin-top":"0.9em"}}
-                className="custom-control-input"
-                id="customCheck1"
-              />
-              <label className="custom-control-label" htmlFor="customCheck1" style={{"color":"#4d4d4d","padding":"0.5em","float":"left"}}>
-                Remember me
-              </label>
-            </div>
-          </div>
-
           <div>
-            <button type="submit" className="btn btn-primary" style={{marginBottom: "3%"}}>
-              Login
+            <button type="submit" className="btn btn-primary" style={{marginBottom: "3%", backgroundColor: "#001D3D"}}>
+              Signin
             </button>
           </div>
 
