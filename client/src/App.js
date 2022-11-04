@@ -6,25 +6,35 @@ import DataTable from './DataTable/DataTable';
 import Details from './Details';
 import UserDetails from './DataTable/userDetails';
 import About from './About'
+import NavBar from './components/Navbar/Navbar';
+import { UserContext } from './UserContext';
+import { useMemo, useState } from 'react';
 function App() {
+  const [user, setUser] = useState(false);
+
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
-    <Router>
-    <div className="App">
-      {/*<Homepage/>*/}
-      <div>
-      <Routes>
-              <Route exact path="/" element={<Homepage />} />
-              <Route path="/Login" element={<Login />} />
-             
-              <Route path="/Details/:id" element={<Details  />} />
-              <Route path="/userDetails" element={<UserDetails />} />
-              <Route path="/About" element={<About />} />
-       </Routes>
-  </div>
-      
+    <UserContext.Provider value={providerValue}>
+      <Router>
+      <div className="App">
+        {/*<Homepage/>*/}
+        <div>
+        <Routes>
+                <Route exact path="/" element={<Homepage />} />
+                <Route path="/Details/:id" element={<Details  />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/userDetails" element={<UserDetails />} />
+                <Route path='/components/Navbar/Navbar' element={<NavBar />} />
+                <Route path="/About" element={<About />} />
+                <Route path='/DataTable/DataTable' element={<DataTable />}/>
+        </Routes>
     </div>
-   
-    </Router>
+        
+      </div>
+    
+      </Router>
+
+    </UserContext.Provider>
   );
 }
 

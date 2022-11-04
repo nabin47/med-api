@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import DataTable from "./DataTable";
 import Login from "../Login";
-export default class UserDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userData: "",
-    };
-  }
+import { UserContext } from "../UserContext";
+export default function UserDetails() {
 
-  componentDidMount() {
+  const [userData, setUserData] = useState("");
+  const {user, setUser} = useContext(UserContext);
+
+  useEffect(() => {
     fetch("/userData", {
       method: "POST",
       crossDomain: true,
@@ -27,21 +25,18 @@ export default class UserDetails extends Component {
 
 
         console.log(data, "userData");
-        this.setState({ userData: data.data });
+        setUser(true);
+        setUserData( data.data );
+        console.log(userData.email)
       });
-  }
+  }, []);
 
-
-
-  //Name<h1>{this.state.userData.name}</h1>
-  render() {
     return (
       <div>
 
-        {this.state.userData.email ? <DataTable/>:<Login/>}
-      
+        {userData.email ? <DataTable/>:<Login/>} 
 
       </div>
     );
-  }
+  // }
 }
