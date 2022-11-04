@@ -8,6 +8,15 @@ import './Details.css'
 const Details = ()=>{
   let payload={};
     let { id } = useParams();
+    let sid = "";
+    for(let i=0;i<id.length;i++)
+    {
+      if(id[i]==='(')
+      {
+        break;
+      }
+      sid=sid+id[i];
+    }
 
     const [item,setItem]=useState({
         name:"",
@@ -24,7 +33,7 @@ const Details = ()=>{
 
   useEffect(() => {
 
-    fetch('/getmedicine/'+id)
+    fetch('/getmedicine/'+sid)
         .then((response)=> response.json())
     .then((data)=>data).then(data =>{
         setItem(data[0]);})
