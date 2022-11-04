@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import Navbar from './components/Navbar/Navbar'
 import SearchbarDropdown from './components/SearchbarDropdown';
+import Cards from './components/Cards/Cards';
+import Footer from './components/Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Footer from './components/Footer/Footer'
 import './App.css';
-import Cards from './components/Cards/Cards';
 
 let val="";
 function App() {
@@ -38,7 +38,7 @@ function App() {
       payload.forEach((item,index)=>{
        
         
-        matchedOptions.push(`${item.name}`);
+        matchedOptions.push(`${item.name}(${item.generic_name})`);
 
       });
       setOptions(matchedOptions);
