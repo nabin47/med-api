@@ -86,9 +86,8 @@ export const Form = ({forceUpdate,closeModal}) => {
           </div>
         </div>
       </div>
-      <div className="form-group modal-button">
-        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-        <button className="form-control btn btn-primary " type="submit" onClick={handleSubmit}>
+      <div className="form-group form-submit-button">
+        <button className="form-control btn btn-primary modal-button " type="submit" onClick={handleSubmit}>
           Submit
         </button>
       </div>
