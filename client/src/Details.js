@@ -1,37 +1,38 @@
-import React from 'react';
+import {useEffect,useState} from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
+import NavBar from './components/Navbar/Navbar';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import './Details.css'
 
 const Details = ()=>{
   let payload={};
-  let { id } = useParams();
-  
-  const [item,setItem]= React.useState({
-      name:"",
-      strength:"",
-      generic_name:"",
-      company:"",
-      price:"",
-      side_effect:"",
-      precautions:"",
-      indication:""
+    let { id } = useParams();
+
+    const [item,setItem]=useState({
+        name:"",
+        strength:"",
+        generic_name:"",
+        company:"",
+        price:"",
+        side_effect:"",
+        precautions:"",
+        indication:""
 
 
-  });
-  fetch('/getmedicine/'+id)
-      .then((response)=> response.json())
-  .then((data)=>data).then(data =>{
-      setItem(data[0]);
-      
+    });
 
-  })
+  useEffect(() => {
+
+    fetch('/getmedicine/'+id)
+        .then((response)=> response.json())
+    .then((data)=>data).then(data =>{
+        setItem(data[0]);})
+  }, []);
 
     return(
        <div>
-        <Navbar/>
+        <NavBar/>
         <div class="medicine">
             <div class="medicine-description">
               <p class="name">{item.name}</p>
@@ -58,7 +59,7 @@ const Details = ()=>{
 
         <Footer />
 
-       </div>   
+       </div>
     )
 }
 export default Details;
