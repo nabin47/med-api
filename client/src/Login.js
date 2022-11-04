@@ -46,7 +46,7 @@ export default class Login extends Component {
       <div>
 
         <form onSubmit={this.handleSubmit} className="login-form" style={{"width":"30%"}}>
-        <div class="container" style={{"backgroundColor":"rgba(24,144,255,0.11)","borderRadius":"2%","marginLeft":"120%","marginTop":"20%"}}>
+        <div className="container" style={{"backgroundColor":"rgba(24,144,255,0.11)","borderRadius":"2%","marginLeft":"120%","marginTop":"20%"}}>
           <h3 style={{"color":"#28282bc7","padding":"0.5em"}} >
             <Link to='/'>
               Med-API
