@@ -97,161 +97,164 @@ function DataTable() {
   return (
     <div className="DataTable">
       <NavBar />
-      <Container triggerText={triggerText}  forceUpdate={forceUpdate} />
-      <header className="App-header">
-        <Table columns={columns} dataSource={dataSource}></Table>
-        <Modal
-          title="Edit Medicine"
-          visible={isEditing}
-          okText="Save"
-          onCancel={() => {
-            resetEditing();
-          }}
-          onOk={() => {
-            fetch('/update/'+ editingMed._id, {
-        method: 'PUT',
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(editingMed)
-    }).then((resp)=> resp.text());
-            forceUpdate()
-            resetEditing();
-          }}
-        >
-          <div className="form-body">
-            <div className="form-col">
-              <div className="form-group">
-                <label>Drug Name</label>
-                <Input
-                  required
-                  className="form-ip-box"
-                  value={editingMed?.name}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, name: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Generic Name</label>
-                <Input
-                  required
-                  className="form-ip-box"
-                  value={editingMed?.generic_name}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, generic_name: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Strength</label>
-                <Input
-                  required
-                  className="form-ip-box"
-                  value={editingMed?.strength}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, strength: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Manufacturer</label>
-                <Input
-                  required
-                  className="form-ip-box"
-                  value={editingMed?.company}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, company: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Unit Price</label>
-                <Input
-                  className="form-ip-box"
-                  value={editingMed?.price}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, price: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-            </div>
+      <div className="dataTable-body-with-add">
 
-            <div className="form-col">
-              <div className="form-group">
-                <label>Indication</label>
-              <Input
-                className="form-ip-box"
-                value={editingMed?.indication}
-                onChange={(e) => {
-                  setEditingMed((pre) => {
-                    return { ...pre, indication: e.target.value };
-                  });
-                }}
-              />
+        <Container triggerText={triggerText}  forceUpdate={forceUpdate} />
+        <header className="App-header">
+          <Table columns={columns} dataSource={dataSource}></Table>
+          <Modal
+            title="Edit Medicine"
+            visible={isEditing}
+            okText="Save"
+            onCancel={() => {
+              resetEditing();
+            }}
+            onOk={() => {
+              fetch('/update/'+ editingMed._id, {
+          method: 'PUT',
+          headers:{
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(editingMed)
+      }).then((resp)=> resp.text());
+              forceUpdate()
+              resetEditing();
+            }}
+          >
+            <div className="form-body">
+              <div className="form-col">
+                <div className="form-group">
+                  <label>Drug Name</label>
+                  <Input
+                    required
+                    className="form-ip-box"
+                    value={editingMed?.name}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, name: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Generic Name</label>
+                  <Input
+                    required
+                    className="form-ip-box"
+                    value={editingMed?.generic_name}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, generic_name: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Strength</label>
+                  <Input
+                    required
+                    className="form-ip-box"
+                    value={editingMed?.strength}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, strength: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Manufacturer</label>
+                  <Input
+                    required
+                    className="form-ip-box"
+                    value={editingMed?.company}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, company: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Unit Price</label>
+                  <Input
+                    className="form-ip-box"
+                    value={editingMed?.price}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, price: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Description</label>
+
+              <div className="form-col">
+                <div className="form-group">
+                  <label>Indication</label>
                 <Input
                   className="form-ip-box"
-                  value={editingMed?.description}
+                  value={editingMed?.indication}
                   onChange={(e) => {
                     setEditingMed((pre) => {
-                      return { ...pre, description: e.target.value };
+                      return { ...pre, indication: e.target.value };
                     });
                   }}
                 />
-              </div>
-              <div className="form-group">
-                <label>Doses</label>
-                <Input
-                  className="form-ip-box"
-                  value={editingMed?.doses}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, doses: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Side Effects</label>
-                <Input
-                  className="form-ip-box"
-                  value={editingMed?.side_effect}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, side_effect: e.target.value };
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label>Precautions</label>
-                <Input
-                  className="form-ip-box"
-                  value={editingMed?.precautions}
-                  onChange={(e) => {
-                    setEditingMed((pre) => {
-                      return { ...pre, precautions: e.target.value };
-                    });
-                  }}
-                />
+                </div>
+                <div className="form-group">
+                  <label>Description</label>
+                  <Input
+                    className="form-ip-box"
+                    value={editingMed?.description}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, description: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Doses</label>
+                  <Input
+                    className="form-ip-box"
+                    value={editingMed?.doses}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, doses: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Side Effects</label>
+                  <Input
+                    className="form-ip-box"
+                    value={editingMed?.side_effect}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, side_effect: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Precautions</label>
+                  <Input
+                    className="form-ip-box"
+                    value={editingMed?.precautions}
+                    onChange={(e) => {
+                      setEditingMed((pre) => {
+                        return { ...pre, precautions: e.target.value };
+                      });
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </Modal>
-      </header>
+          </Modal>
+        </header>
+      </div>
     </div>
   );
 }
