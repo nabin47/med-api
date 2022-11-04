@@ -9,6 +9,7 @@ export const Modal = ({
   modalRef,
   buttonRef,
   closeModal,
+  forceUpdate
   // onSubmit
 }) => {
   return ReactDOM.createPortal(
@@ -38,7 +39,7 @@ export const Modal = ({
             </svg>
           </button>
           <div className="modal-body w-100 p-3">
-            <Form  />
+            <Form  forceUpdate={forceUpdate} closeModal={closeModal}/>
           </div>
         </div>
       </aside>

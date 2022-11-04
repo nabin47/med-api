@@ -2,7 +2,7 @@ import React from 'react';
 import './Form.css';
 import {useContext, useState} from 'react';
 
-export const Form = () => {
+export const Form = ({forceUpdate,closeModal}) => {
   const [name, setname] = useState("");
   const [strength, setstrength] = useState("");
   const [company, setcompany] = useState("");
@@ -33,6 +33,8 @@ export const Form = () => {
     headers:{'Content-Type': 'application/json'},
     body: JSON.stringify(data)
   }).then(res => res.json());  
+  forceUpdate()
+  closeModal()
 
   };
   return (
