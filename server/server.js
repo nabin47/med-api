@@ -77,14 +77,25 @@ const { response } = require("express");
 
 app.post('/getmedicine',async(req,res)=>{
 
-  
- let payload = req.body.name.trim();
 
-  let search = await med.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec();
-  search = search.slice(0,10);
-  res.send({"name": search}) 
-  
-});
+  let payload = req.body.name.trim();
+  let full = [];
+ 
+  let search = await med.find({name: {$regex: new RegExp('^'+payload+'.','i')}}).exec();
+   let gen = await med.find({generic_name: {$regex: new RegExp('^'+payload+'.','i')}}).exec();
+   search.forEach(element => {
+     full.push(element);
+ 
+   });
+   gen.forEach(element => {
+     full.push(element);
+ 
+   });
+   full = full.slice(0,10);
+   //console.log(search);
+   res.send({"name": full}) 
+ 
+ });
 
 //get specific medicine info
 app.get('/getmedicine/:id',async(req, resp)=>{
