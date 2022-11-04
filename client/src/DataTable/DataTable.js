@@ -1,17 +1,18 @@
 import "antd/dist/antd.css";
-import "./Table.css";
 import "../Modal/Form.css"
+import "./Table.css";
 import { Button, Table, Modal, Input } from "antd";
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useReducer} from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-import Navbar from "../components/Navbar2/Navbar";
+import NavBar from "../components/Navbar/Navbar";
 import Container from '../Modal/Container';
 
 function DataTable() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingMed, setEditingMed] = useState(null);
   const [dataSource, setDataSource] = useState("");
+  const [reducerValue, forceUpdate]= useReducer(x => x+1,0);
   useEffect(() => {
     const url = "/getmed";
 
@@ -25,7 +26,7 @@ function DataTable() {
         }
     };
     fetchData();
-  }, []);
+  }, [reducerValue]);
   const columns = [
     {
       key: "1",
@@ -80,8 +81,8 @@ function DataTable() {
       onOk: () => {
         fetch('/delete/' + record._id,{
           method: 'DELETE'
-      }).then((resp)=> resp.text())
-      .then(() => window.location.reload());
+      }).then((resp)=> resp.text());
+      forceUpdate()
       },
     });
   };
@@ -95,8 +96,8 @@ function DataTable() {
   };
   return (
     <div className="DataTable">
-      <Navbar />
-      <Container triggerText={triggerText}  />
+      <NavBar />
+      <Container triggerText={triggerText}  forceUpdate={forceUpdate} />
       <header className="App-header">
         <Table columns={columns} dataSource={dataSource}></Table>
         <Modal
@@ -113,8 +114,8 @@ function DataTable() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(editingMed)
-    }).then((resp)=> resp.text())
-    .then(()=>window.history.go());
+    }).then((resp)=> resp.text());
+            forceUpdate()
             resetEditing();
           }}
         >
