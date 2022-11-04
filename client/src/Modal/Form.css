@@ -229,3 +229,11 @@ form-body.form-group.form-control {
 .modal-button {
     width: auto;
 }
+
+.dataTable-body-with-add {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
