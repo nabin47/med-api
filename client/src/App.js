@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import DataTable from './DataTable/DataTable';
 import Details from './Details';
 import UserDetails from './DataTable/userDetails';
-import About from './About'
+import About from './pages/About/About'
 import NavBar from './components/Navbar/Navbar';
 import { UserContext } from './UserContext';
 import { useMemo, useState } from 'react';
@@ -25,7 +25,7 @@ function App() {
                 <Route path="/Login" element={<Login />} />
                 <Route path="/userDetails" element={<UserDetails />} />
                 <Route path='/components/Navbar/Navbar' element={<NavBar />} />
-                <Route path="/About" element={<About />} />
+                <Route path="/pages/About/About" element={<About />} />
                 <Route path='/DataTable/DataTable' element={<DataTable />}/>
         </Routes>
     </div>

@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { MedicineBoxTwoTone } from '@ant-design/icons';
-
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { UserContext } from '../../UserContext';
-import './NavBar.css'
+import './NavBar.css';
 
 function Navigate(){
   window.localStorage.clear();
@@ -29,7 +28,7 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link >
-              <Link to='/About'>About Us</Link>
+              <Link to='/pages/About/About'>About Us</Link>
             </Nav.Link>
           </Nav>
             {user ? (
