@@ -1,12 +1,11 @@
 import "antd/dist/antd.css";
-import "../Modal/Form.css"
-import "./Table.css";
-import { Button, Table, Modal, Input } from "antd";
+import { Table, Modal, Input } from "antd";
 import { useState, useEffect ,useReducer} from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-
-import NavBar from "../components/Navbar/Navbar";
-import Container from '../Modal/Container';
+import "../../components/Modal/Form.css"
+import "./Table.css";
+import NavBar from "../../components/Navbar/Navbar";
+import Container from "../../components/Modal/Container";
 
 function DataTable() {
   const [isEditing, setIsEditing] = useState(false);

@@ -32,7 +32,7 @@ export default class Login extends Component {
         if (data.status == "ok") {
          
           window.localStorage.setItem("token", data.data);
-          window.location.href = "./userDetails";
+          window.location.href = "../DataTable/userDetails";
         }
         else{
           

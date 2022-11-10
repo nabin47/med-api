@@ -4,12 +4,12 @@ import { MedicineBoxTwoTone } from '@ant-design/icons';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { UserContext } from '../../UserContext';
+import { UserContext } from '../UserContext';
 import './NavBar.css';
 
 function Navigate(){
   window.localStorage.clear();
-  window.location.replace('./');
+  window.location.replace('../../');
  return false;
 }
 
@@ -34,16 +34,16 @@ function NavBar() {
             {user ? (
               <Nav>
               <Nav.Link >
-                <Link to='/userDetails'>Data Table</Link>
+                <Link to='/pages/DataTable/userDetails'>Data Table</Link>
               </Nav.Link>
               <Nav.Link >
-                <Link to='/Login' onClick={Navigate}>Sign out</Link>
+                <Link to='/pages/Login/Login' onClick={Navigate}>Sign out</Link>
               </Nav.Link>
               </Nav>
             ) : (
               <Nav>
               <Nav.Link >
-                <Link to='/Login'>Signin</Link>
+                <Link to='/pages/Login/Login'>Signin</Link>
               </Nav.Link>
               </Nav>
             )}

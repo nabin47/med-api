@@ -1,13 +1,13 @@
 import './App.css';
-import Login from './Login'
+import Login from './pages/Login/Login';
 import Homepage from './Homepage';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import DataTable from './DataTable/DataTable';
+import DataTable from './pages/DataTable/DataTable';
 import Details from './Details';
-import UserDetails from './DataTable/userDetails';
+import UserDetails from './pages/DataTable/userDetails';
 import About from './pages/About/About'
 import NavBar from './components/Navbar/Navbar';
-import { UserContext } from './UserContext';
+import { UserContext } from './components/UserContext';
 import { useMemo, useState } from 'react';
 function App() {
   const [user, setUser] = useState(false);
@@ -22,11 +22,11 @@ function App() {
         <Routes>
                 <Route exact path="/" element={<Homepage />} />
                 <Route path="/Details/:id" element={<Details  />} />
-                <Route path="/Login" element={<Login />} />
-                <Route path="/userDetails" element={<UserDetails />} />
-                <Route path='/components/Navbar/Navbar' element={<NavBar />} />
+                <Route path="/pages/Login/Login" element={<Login />} />
+                <Route path="/pages/DataTable/userDetails" element={<UserDetails />} />
+                <Route path="/components/Navbar/Navbar" element={<NavBar />} />
                 <Route path="/pages/About/About" element={<About />} />
-                <Route path='/DataTable/DataTable' element={<DataTable />}/>
+                <Route path="/pages/DataTable/DataTable" element={<DataTable />}/>
         </Routes>
     </div>
         

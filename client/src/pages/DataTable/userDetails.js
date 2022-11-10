@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import DataTable from "./DataTable";
-import Login from "../Login";
-import { UserContext } from "../UserContext";
+import Login from "../../pages/Login/Login";
+import { UserContext } from "../../components/UserContext";
 export default function UserDetails() {
 
   const [userData, setUserData] = useState("");
