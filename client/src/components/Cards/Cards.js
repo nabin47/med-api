@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './CardUi';
 import { useEffect,useState } from 'react';
 

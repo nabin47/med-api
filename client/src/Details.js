@@ -6,7 +6,6 @@ import Footer from './components/Footer/Footer';
 import './Details.css'
 
 const Details = ()=>{
-  let payload={};
     let { id } = useParams();
     let sid = "";
     for(let i=0;i<id.length;i++)
@@ -27,8 +26,6 @@ const Details = ()=>{
         side_effect:"",
         precautions:"",
         indication:""
-
-
     });
 
   useEffect(() => {

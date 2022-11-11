@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './pages/Login/Login';
 import Homepage from './Homepage';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DataTable from './pages/DataTable/DataTable';
 import Details from './Details';
 import UserDetails from './pages/DataTable/userDetails';

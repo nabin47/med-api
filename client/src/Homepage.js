@@ -7,13 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
-let val="";
 function App() {
   const [options, setOptions] = useState([]);
   
 
   const onInputChange = (event) => {
-    if(event.target.value!="undefined"){
+    if(event.target.value!=="undefined"){
     let match = event.target.value.match(/^[a-zA-Z ]*/);
     let match1= event.target.value.match(/\s*/);
     if(match1[0]===event.target.value){
