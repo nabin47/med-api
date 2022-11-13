@@ -23,7 +23,7 @@ const SearchbarDropdown = (props) => {
   const navigate = useNavigate();
   function navigateToDetailsPage()
   {
-    navigate('/Details/'+inputRef.current.value);
+    navigate('/pages/Details/Details/'+inputRef.current.value);
   }
     return(
         <div className="search-bar-dropdown">
