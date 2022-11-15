@@ -16,7 +16,7 @@ function Navigate(){
 function NavBar() {
   const {user, setUser} = useContext(UserContext);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='nav-body'>
+    <Navbar collapseOnSelect expand="lg" variant="light" className='nav-body'>
       <Container>
         <Navbar.Brand>
           <div className="logo">
