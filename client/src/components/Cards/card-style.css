@@ -4,10 +4,13 @@
 
 .cadr{
     width: 20rem;
+    /* transform: 0.2s; */
+    box-shadow: 5px 10x 20px 1px rgba(212, 21, 212, 0.253) !important;
+    transition: transform 2s linear 1s ease-in-out;
 }
 
-.card:hover{
-    box-shadow: 5px 10x 20px 1px rgba(212, 21, 212, 0.253) !important;
+.cadr:hover{
+    transform: scale(1.1, 1.1);
 }
 
 .card-body{
