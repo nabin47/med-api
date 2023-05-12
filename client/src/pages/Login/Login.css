@@ -1,4 +1,4 @@
-@import "~antd/dist/antd.css";
+/* @import "~antd/dist/antd.css";
 
 body {
   margin: 0;
@@ -26,4 +26,11 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+} */
+
+.login-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

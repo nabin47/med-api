@@ -26,3 +26,19 @@
   padding-top: 0;
   background-color: "#cafof8";
 }
+
+.table-button-parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.table-button-add {
+  width: auto;
+}
+
+.ant-table {
+  background-color: #1890ff1c;
+}
